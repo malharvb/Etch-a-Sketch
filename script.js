@@ -49,6 +49,7 @@ function reset()
         return;
     }
     r = false;
+    color = 'black'
     gridMaking();
     drawing();
 }
@@ -71,6 +72,7 @@ function colorChange(e)
     }
     e.target.style.backgroundColor = `${color}`;
 }
+
 function colorSel(e)
 {
     if(e.target.id == 'draw')

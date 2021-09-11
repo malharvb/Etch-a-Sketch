@@ -2,10 +2,8 @@ const div_container = document.querySelector('.container')
 const div_container_css = getComputedStyle(div_container)
 let h = parseInt(div_container_css.height);
 let w = parseInt(div_container_css.width);
-let input =16,color = 'black';
+let input = 16,color = 'white';
 let r = false;
-
-
 
 
 
@@ -49,7 +47,7 @@ function reset()
         return;
     }
     r = false;
-    color = 'black'
+    color = 'white';
     gridMaking();
     drawing();
 }
@@ -72,7 +70,6 @@ function colorChange(e)
     }
     e.target.style.backgroundColor = `${color}`;
 }
-
 function colorSel(e)
 {
     if(e.target.id == 'draw')
@@ -93,7 +90,8 @@ function colorSel(e)
 function clear()
 {
     divs.forEach(div => div.style.backgroundColor = 'white');
-    color = 'black';
+    color = 'white';
+    r = false;
 }
 
 

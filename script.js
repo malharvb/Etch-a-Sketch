@@ -32,7 +32,7 @@ const divs = document.querySelectorAll('.content')
 
 function reset()
 {
-    divs.forEach(div => div.style.backgroundColor = 'white');
+    
     input = prompt("Enter the number of rows & columns. Ex: 32  (Min:10 Maximum: 100)");
     if (isNaN(input)) {
         window.alert("Enter a valid number.");
@@ -46,6 +46,7 @@ function reset()
         window.alert("You must enter a positive integer. (Maximum: 100)");
         return;
     }
+    divs.forEach(div => div.style.backgroundColor = 'white');
     r = false;
     color = 'white';
     gridMaking();

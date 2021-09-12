@@ -2,7 +2,7 @@ const div_container = document.querySelector('.container')
 const div_container_css = getComputedStyle(div_container)
 let h = parseInt(div_container_css.height);
 let w = parseInt(div_container_css.width);
-let input =16,color = 'black';
+let input =16,color = 'white';
 let r = false;
 
 
@@ -34,7 +34,6 @@ const divs = document.querySelectorAll('.content')
 
 function reset()
 {
-    divs.forEach(div => div.style.backgroundColor = 'white');
     input = prompt("Enter the number of rows & columns. Ex: 32  (Min:10 Maximum: 100)");
     if (isNaN(input)) {
         window.alert("Enter a valid number.");
@@ -48,8 +47,9 @@ function reset()
         window.alert("You must enter a positive integer. (Maximum: 100)");
         return;
     }
+    divs.forEach(div => div.style.backgroundColor = 'white');
     r = false;
-    color = 'black'
+    color = 'white';
     gridMaking();
     drawing();
 }
@@ -93,7 +93,8 @@ function colorSel(e)
 function clear()
 {
     divs.forEach(div => div.style.backgroundColor = 'white');
-    color = 'black';
+    color = 'white';
+    r = false;
 }
 
 

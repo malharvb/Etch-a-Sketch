@@ -66,15 +66,7 @@ function drawing()
     function colorChange(e)
     {   
         
-        div_container.onmousedown = function() 
-        { 
-            ++mouseDown;
-        }
-        div_container.onmouseup = function() 
-        {
-            --mouseDown;
-        }
-        div_container.addEventListener('mouseleave', () => {mouseDown = 0});
+        
         if(mouseDown)
         {
             if(r == true)
@@ -115,9 +107,17 @@ function drawing()
     }
     
     let mouseDown = 0;
-
+    div_container.onmousedown = function() 
+    { 
+        ++mouseDown;
+    }
+    div_container.onmouseup = function() 
+    {
+        --mouseDown;
+    }
+    div_container.addEventListener('mouseleave', () => {mouseDown = 0});
     const divs = document.querySelectorAll('.content');
-    divs.forEach(div => div.addEventListener('mouseenter',colorChange));
+    divs.forEach(div => div.addEventListener('mouseover',colorChange));
     
     
 

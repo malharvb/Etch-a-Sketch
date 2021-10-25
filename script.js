@@ -34,7 +34,7 @@ const divs = document.querySelectorAll('.content')
 
 function reset()
 {
-    input = prompt("Enter the number of rows & columns. Ex: 32  (Min:10 Maximum: 100)");
+    input = prompt("Enter the number of rows & columns. Ex: 32  (Min: 10 Maximum: 100)");
     if (isNaN(input)) {
         window.alert("Enter a valid number.");
         return;
@@ -51,7 +51,6 @@ function reset()
     r = false;
     color = 'white';
     gridMaking();
-    drawing();
 }
 
 
@@ -61,30 +60,56 @@ resetbtn.addEventListener('click', reset);
 
 
 
-function drawing()
-{
-    function colorChange(e)
-    {   
-        
-        
-        if(mouseDown)
+function paintGrid(elem, color)
+{    
+    if(elem.buttons == 1)
+    {
+        if(elem.target.classList[0] == 'content')
         {
-            if(r == true)
-            {
-                let n = (Math.random() * 0xfffff * 1000000).toString(16);
-                color = '#' + n.slice(0, 6);
-            }
-            e.target.style.backgroundColor = `${color}`;
-        }
-        
+            console.log('Here')
+            let square = elem.target;    
+            square.style.backgroundColor = color;
+        }  
     }
+    else
+    {    
+        return;
+    }
+}
+    
+    
+    div_container.addEventListener('mousedown', e => { 
+        if(e.buttons == 1)
+        {       
+            window.addEventListener('mouseover', e => {
+                if(r == true)
+                {
+                    let n = (Math.random() * 0xfffff * 1000000).toString(16);
+                    color = '#' + n.slice(0, 6);
+                    paintGrid(e, color);
+                }
+                else
+                {
+                    paintGrid(e, color);
+                }            
+            });
+        }
+    });
+    
+    div_container.addEventListener('click', e => {
+        if(e.target.classList[0] == 'content')
+        {
+            e.target.style.backgroundColor = color;
+        }
+    })
+
+
+
     function colorSel(e)
     {   
         if(e.target.id == 'draw')
         {
             color = 'black';
-            if(scolor != '#000000')
-               color = scolor;
             r = false;
         }
         else if(e.target.id == 'erase')
@@ -96,28 +121,13 @@ function drawing()
         {
             r = true;
         }
-        mouseDown = 0;
     }
     function clear()
     {
         divs.forEach(div => div.style.backgroundColor = 'white');
         color = 'white';
         r = false;
-        mouseDown = 0;
     }
-    
-    let mouseDown = 0;
-    div_container.onmousedown = function() 
-    { 
-        ++mouseDown;
-    }
-    div_container.onmouseup = function() 
-    {
-        --mouseDown;
-    }
-    div_container.addEventListener('mouseleave', () => {mouseDown = 0});
-    const divs = document.querySelectorAll('.content');
-    divs.forEach(div => div.addEventListener('mouseover',colorChange));
     
     
 
@@ -135,10 +145,8 @@ function drawing()
 
     const colorPicker = document.querySelector('input');
     colorPicker.onchange = e => { 
-        scolor = e.target.value;
-        mouseDown = 0;
+        color = e.target.value;
     };
     
 
-}
-drawing();
+
